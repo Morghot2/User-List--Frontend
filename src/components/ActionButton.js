@@ -7,7 +7,7 @@ import {
   useUpdateUserMutation,
   useRemoveUserMutation,
   useGetCurrentUserQuery,
-} from "../redux/slices/apiSlice";
+} from "../redux/slices/services/apiSlice";
 
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";

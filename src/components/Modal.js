@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import {
   useChangeButtonMutation,
   useGetButtonQuery,
-} from "../redux/slices/apiSlice";
+} from "../redux/slices/services/apiSlice";
 
 import { v4 as uuidv4 } from "uuid";
 
