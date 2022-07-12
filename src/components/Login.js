@@ -34,8 +34,11 @@ const Login = () => {
       [name]: value,
     });
   };
-  console.log(userValues);
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginUser(userValues) 
+    navigate('/')
+  }
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -56,7 +59,7 @@ const Login = () => {
           </Typography>
           <Box
             component="form"
-            onSubmit={() => loginUser({ userValues })}
+            onSubmit={() => loginUser(userValues)}
             noValidate
             sx={{ mt: 1 }}
           >
