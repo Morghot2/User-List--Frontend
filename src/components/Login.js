@@ -1,4 +1,4 @@
-
+import {useState, useEffect} from "react"
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,18 +13,28 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { useNavigate  } from "react-router-dom";
+
+
 
 const theme = createTheme();
 
 const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+  let navigate = useNavigate();
+
+  const [userValues, setUserValues] = useState({
+    email: "",
+    password: "",
+  });
+  const handleUserValueChange = (e) => {
+    const { name, value } = e.target;
+    setUserValues({
+      ...userValues,
+      [name]: value,
     });
   };
+  console.log(userValues);
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -44,7 +54,7 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" /* onSubmit={handleSubmit} */ noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -53,6 +63,7 @@ const Login = () => {
               label="Email Address"
               name="email"
               autoComplete="email"
+              onChange={(e) => handleUserValueChange(e)}
               autoFocus
             />
             <TextField
@@ -63,6 +74,7 @@ const Login = () => {
               label="Password"
               type="password"
               id="password"
+              onChange={(e) => handleUserValueChange(e)}
               autoComplete="current-password"
             />
             {/* <FormControlLabel
