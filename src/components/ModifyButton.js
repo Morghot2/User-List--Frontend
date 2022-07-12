@@ -3,7 +3,7 @@ import {
   useChangeButtonMutation,
   useChangeCurrentUserMutation,
   useGetButtonQuery,
-} from "../redux/slices/apiSlice";
+} from "../redux/slices/services/apiSlice";
 
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";

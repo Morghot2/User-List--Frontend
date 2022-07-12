@@ -13,12 +13,13 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { useNavigate } from "react-router-dom";
-import { formControlClasses } from "@mui/material";
-
+// import { formControlClasses } from "@mui/material";
+import { useRegisterUserMutation } from "../redux/slices/services/authApiSlice";
 const theme = createTheme();
 
 const Registration = () => {
   let navigate = useNavigate();
+  const [registerUser] = useRegisterUserMutation()
 
   const [userValues, setUserValues] = useState({
     firstName: "",
@@ -70,7 +71,7 @@ const Registration = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" /* onSubmit={handleSubmit} */ sx={{ mt: 3 }}>
+          <Box component="form"  onSubmit={() => registerUser(userValues)}  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField

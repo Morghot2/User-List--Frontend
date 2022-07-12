@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useGetUsersQuery } from "../redux/slices/apiSlice";
+import { useGetUsersQuery } from "../redux/slices/services/apiSlice";
 
 import ActionButton from "./ActionButton";
 import ModifyButton from "./ModifyButton";
