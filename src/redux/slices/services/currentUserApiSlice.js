@@ -19,11 +19,11 @@ export const currentUserApi = createApi({
         };
       },
       transformResponse: (result) =>
-        result.data.user,
+        result.data.token,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setUser(data));
+          dispatch(setUser('asdasdad'));
         } catch (error) {}
       },
     }),

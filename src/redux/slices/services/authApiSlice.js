@@ -3,8 +3,8 @@ import { currentUserApi } from "./currentUserApiSlice";
 
 const BASE_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
-const user = JSON.parse(localStorage.getItem("user"));
-
+// const user = JSON.parse(localStorage.getItem("user"));
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyY2MwZjBlMjU1ZGM0YmZhMmZkYjE2YiIsImlhdCI6MTY1NzcxMTc3NiwiZXhwIjoxNjYwMzAzNzc2fQ.ZEJHuZhYfwOSMSUMP91PdFKHoIXITxJPHbfhWlMHp5Y"
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
@@ -32,18 +32,18 @@ export const authApi = createApi({
       // async onQueryStarted(args, { dispatch, queryFulfilled }) {
       //   try {
       //     await queryFulfilled;
-      //     await dispatch(currentUserApi.endpoints.getMe.initiate(null));
+      //     await dispatch(currentUserApi.endpoints.getMe.initiate({}));
       //   } catch (error) {}
       // },
     }),
-    logoutUser: builder.mutation({
-      query() {
-        return {
-          url: "logout",
-          credentials: "include",
-        };
-      },
-    }),
+    // logoutUser: builder.mutation({
+    //   query() {
+    //     return {
+    //       url: "logout",
+    //       credentials: "include",
+    //     };
+    //   },
+    // }),
   }),
 });
 
