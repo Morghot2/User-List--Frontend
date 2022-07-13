@@ -3,8 +3,8 @@ import { currentUserApi } from "./currentUserApiSlice";
 
 const BASE_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
-// const user = JSON.parse(localStorage.getItem("user"));
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyY2MwZjBlMjU1ZGM0YmZhMmZkYjE2YiIsImlhdCI6MTY1NzcxMTc3NiwiZXhwIjoxNjYwMzAzNzc2fQ.ZEJHuZhYfwOSMSUMP91PdFKHoIXITxJPHbfhWlMHp5Y"
+
+
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
@@ -19,6 +19,7 @@ export const authApi = createApi({
           body: data,
         };
       },
+      transformResponse: (response, meta, arg) => localStorage.setItem('user', JSON.stringify(response.token)),
     }),
     loginUser: builder.mutation({
       query(data) {
@@ -29,6 +30,7 @@ export const authApi = createApi({
           credentials: "include",
         };
       },
+      transformResponse: (response, meta, arg) => localStorage.setItem('user', JSON.stringify(response.token)),
       // async onQueryStarted(args, { dispatch, queryFulfilled }) {
       //   try {
       //     await queryFulfilled;

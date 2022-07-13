@@ -4,6 +4,8 @@ import { setUser } from '../currentUserLoginSlice.js';
 
 const BASE_URL = process.env.REACT_APP_SERVER_ENDPOINT
 
+// const user = JSON.parse(localStorage.getItem("user"));
+
 export const currentUserApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({
@@ -19,11 +21,11 @@ export const currentUserApi = createApi({
         };
       },
       transformResponse: (result) =>
-        result.data.token,
+        result.data.user,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setUser('asdasdad'));
+          dispatch(setUser(data));
         } catch (error) {}
       },
     }),

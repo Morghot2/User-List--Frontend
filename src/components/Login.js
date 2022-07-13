@@ -21,7 +21,11 @@ import { useSelector } from 'react-redux'
 
 const theme = createTheme();
 
+
 const Login = () => {
+  // const user = JSON.parse(localStorage.getItem('user'))
+  // console.log(user)
+  // localStorage.removeItem('user')
 
 
   let navigate = useNavigate();
