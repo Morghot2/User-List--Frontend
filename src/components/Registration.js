@@ -41,17 +41,12 @@ const Registration = () => {
       [name]: value,
     });
   };
-  // let isWorking = {}
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   isWorking = { ...userValues }
-  //   // console.log(isWorking)
-  //   form.reset()
-    
-  // }
 
-  console.log(userValues);
-  // console.log(isWorking);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    registerUser(userValues) 
+  }
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -71,7 +66,7 @@ const Registration = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form"  onSubmit={() => registerUser(userValues)}  sx={{ mt: 3 }}>
+          <Box component="form"  onSubmit={handleSubmit}  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -119,19 +114,13 @@ const Registration = () => {
                   onChange={(e) => handleUserValueChange(e)}
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              // onClick={handleSubmit}
+              // onClick={() => registerUser(userValues)}
             >
               Sign Up
             </Button>

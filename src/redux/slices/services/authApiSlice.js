@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-// import { userApi } from "./userApi";
+import { currentUserApi } from "./currentUserApiSlice";
 
 const BASE_URL = process.env.REACT_APP_SERVER_ENDPOINT;
+
+const user = JSON.parse(localStorage.getItem("user"));
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -31,7 +32,7 @@ export const authApi = createApi({
       // async onQueryStarted(args, { dispatch, queryFulfilled }) {
       //   try {
       //     await queryFulfilled;
-      //     await dispatch(userApi.endpoints.getMe.initiate(null));
+      //     await dispatch(currentUserApi.endpoints.getMe.initiate(null));
       //   } catch (error) {}
       // },
     }),
@@ -51,4 +52,4 @@ export const {
   useRegisterUserMutation,
   useLogoutUserMutation,
 } = authApi;
-export default authApi.reducer
+export default authApi.reducer;

@@ -16,12 +16,16 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useLoginUserMutation } from "../redux/slices/services/authApiSlice";
 
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux'
+
 
 const theme = createTheme();
 
 const Login = () => {
+
+
   let navigate = useNavigate();
-  const [loginUser] = useLoginUserMutation();
+  const [loginUser, {status, error, data}] = useLoginUserMutation();
 
   const [userValues, setUserValues] = useState({
     email: "",
@@ -37,7 +41,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser(userValues) 
-    navigate('/')
   }
   return (
     <ThemeProvider theme={theme}>
@@ -57,11 +60,11 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box
-            component="form"
-            onSubmit={() => loginUser(userValues)}
-            noValidate
-            sx={{ mt: 1 }}
+          <form
+            // component="form"
+            onSubmit={handleSubmit}
+            // noValidate
+            // sx={{ mt: 1 }}
           >
             <TextField
               margin="normal"
@@ -98,18 +101,13 @@ const Login = () => {
               Sign In
             </Button>
             <Grid container>
-              {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
               <Grid item>
                 <Link href="/registration" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
-          </Box>
+          </form>
         </Box>
       </Container>
     </ThemeProvider>
