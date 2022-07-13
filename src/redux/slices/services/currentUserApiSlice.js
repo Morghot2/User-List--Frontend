@@ -3,13 +3,14 @@ import { setUser } from "../currentUserLoginSlice.js";
 
 const BASE_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
-const user = JSON.parse(localStorage.getItem("user"));
+
 
 export const currentUserApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `http://localhost:5000/api/appusers`,
     prepareHeaders: (headers) => {
+      const user = JSON.parse(localStorage.getItem("user"));
       // If we have a token set in state, let's assume that we should be passing it.
 
       headers.set("authorization", `Bearer ${user}`);
