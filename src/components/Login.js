@@ -27,6 +27,9 @@ const Login = () => {
   // console.log(user)
   // localStorage.removeItem('user')
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user)
+
 
   let navigate = useNavigate();
   const [loginUser, {status, error, data}] = useLoginUserMutation();
