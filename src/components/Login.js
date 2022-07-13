@@ -17,22 +17,25 @@ import { useLoginUserMutation } from "../redux/slices/services/authApiSlice";
 
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux'
+import { useGetMeQuery } from "../redux/slices/services/currentUserApiSlice";
 
 
 const theme = createTheme();
 
 
 const Login = () => {
+  const { data} = useGetMeQuery()
+  
   // const user = JSON.parse(localStorage.getItem('user'))
   // console.log(user)
   // localStorage.removeItem('user')
 
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user)
+  console.log(data)
 
 
   let navigate = useNavigate();
-  const [loginUser, {status, error, data}] = useLoginUserMutation();
+  const [loginUser] = useLoginUserMutation();
 
   const [userValues, setUserValues] = useState({
     email: "",

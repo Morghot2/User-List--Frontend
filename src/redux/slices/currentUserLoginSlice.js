@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import produce from "immer";
 
 
-
-const initialState = {token: "test"
-};
+let initialState = {
+  _id: "",
+  firstName: "",
+  lastName: "",
+  email: ""
+}
 
 export const currentUserLoginSlice = createSlice({
   initialState,
@@ -11,7 +15,7 @@ export const currentUserLoginSlice = createSlice({
   reducers: {
     logout: () => initialState,
     setUser: (state, action) => {
-      state.token = action.payload;
+      return {...action.payload}
     },
   },
 });
