@@ -40,6 +40,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser(userValues);
+    navigate("/");
   };
   return (
     <ThemeProvider theme={theme}>

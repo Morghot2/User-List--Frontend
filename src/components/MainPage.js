@@ -7,12 +7,14 @@ import ListBody from "./ListBody";
 import MyModal from "./Modal";
 
 
-
+import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
 import { useGetButtonQuery } from "../redux/slices/services/apiSlice";
 
 const MainPage = (props) => {
+  const { data, loading, error } = useGetRecordsQuery();
+  console.log(data)
 
-  const { data } = useGetButtonQuery();
+  // const { data } = useGetButtonQuery();
   return (
     <>
       <Header />

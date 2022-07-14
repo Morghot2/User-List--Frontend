@@ -14,7 +14,7 @@ export const currentUserApi = createApi({
       query() {
         return {
           url: "/me",
-          headers: { authorization: `Bearer ${localStorage.getItem("user")}` },
+          headers: { authorization: `Bearer ${JSON.parse(localStorage.getItem("user"))}` },
           credentials: "include",
         };
       },
