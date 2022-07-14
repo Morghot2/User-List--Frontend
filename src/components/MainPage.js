@@ -11,7 +11,8 @@ import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
 import { useGetButtonQuery } from "../redux/slices/services/apiSlice";
 
 const MainPage = (props) => {
-  const { data, loading, error } = useGetRecordsQuery();
+  const { data, isLoading, isError } = useGetRecordsQuery();
+  if (isLoading)  { return <div>Loading...</div>; }
   console.log(data)
 
   // const { data } = useGetButtonQuery();

@@ -6,6 +6,7 @@ import currentUserReducer, {
   currentUserApi,
 } from "./slices/services/currentUserApiSlice";
 import currentUserLoginReducer from "./slices/currentUserLoginSlice";
+import buttonReducer from "./slices/buttonSlice";
 export default configureStore({
   reducer: {
     usersApi: usersApiReducer,
@@ -13,6 +14,8 @@ export default configureStore({
     currentUserApi: currentUserReducer,
     recordsApi: recordsApiReducer,
     userState: currentUserLoginReducer,
+    buttonState: buttonReducer,
+    
     
   },
   middleware: (getDefaultMiddleware) =>
