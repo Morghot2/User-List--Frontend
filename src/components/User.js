@@ -8,8 +8,9 @@ import ModifyButton from "./ModifyButton";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 
-const User = ({ position }) => {
+const User = ({ position, userInfo }) => {
   const { data } = useGetRecordsQuery();
+  console.log(userInfo)
 
   return (
     <TableRow>
