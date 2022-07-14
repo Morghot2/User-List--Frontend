@@ -1,7 +1,7 @@
 import React from "react";
 
-import { useGetUsersQuery } from "../redux/slices/services/apiSlice";
 
+import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
 import ActionButton from "./ActionButton";
 import ModifyButton from "./ModifyButton";
 
@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 
 const User = ({ position }) => {
-  const { data } = useGetUsersQuery();
+  const { data } = useGetRecordsQuery();
 
   return (
     <TableRow>

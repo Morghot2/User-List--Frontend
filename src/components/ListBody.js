@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { useGetUsersQuery } from "../redux/slices/services/apiSlice";
+import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
 
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -19,7 +20,7 @@ const ListBody = () => {
 
   let navigate = useNavigate();
   const { page } = useParams();
-  const { data, isFetching } = useGetUsersQuery();
+  const { data, isFetching } = useGetRecordsQuery();
 
   const [rowsPerPage, setRowsPerPage] = useState(3);
 
