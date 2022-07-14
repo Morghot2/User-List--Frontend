@@ -3,8 +3,6 @@ import { currentUserApi } from "./currentUserApiSlice";
 
 const BASE_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
-
-
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
@@ -19,7 +17,8 @@ export const authApi = createApi({
           body: data,
         };
       },
-      transformResponse: (response, meta, arg) => localStorage.setItem('user', JSON.stringify(response.token)),
+      // transformResponse: (response, meta, arg) =>
+      //   localStorage.setItem("user", JSON.stringify(response.token)),
     }),
     loginUser: builder.mutation({
       query(data) {
@@ -30,28 +29,17 @@ export const authApi = createApi({
           credentials: "include",
         };
       },
-      transformResponse: (response, meta, arg) => localStorage.setItem('user', JSON.stringify(response.token)),
-      // async onQueryStarted(args, { dispatch, queryFulfilled }) {
-      //   try {
-      //     await queryFulfilled;
-      //     await dispatch(currentUserApi.endpoints.getMe.initiate(null));
-      //   } catch (error) {}
-      // },
+      transformResponse: (response, meta, arg) =>
+        localStorage.setItem("user", JSON.stringify(response.token)),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          await dispatch(currentUserApi.endpoints.getMe.initiate());
+        } catch (error) {}
+      },
     }),
-    // logoutUser: builder.mutation({
-    //   query() {
-    //     return {
-    //       url: "logout",
-    //       credentials: "include",
-    //     };
-    //   },
-    // }),
   }),
 });
 
-export const {
-  useLoginUserMutation,
-  useRegisterUserMutation,
-  useLogoutUserMutation,
-} = authApi;
+export const { useLoginUserMutation, useRegisterUserMutation } = authApi;
 export default authApi.reducer;

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import produce from "immer";
 
 
-let initialState = {
+const initialState = {
   _id: "",
   firstName: "",
   lastName: "",

@@ -16,23 +16,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useLoginUserMutation } from "../redux/slices/services/authApiSlice";
 
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux'
-import { useGetMeQuery } from "../redux/slices/services/currentUserApiSlice";
-
+import { useSelector } from "react-redux";
 
 const theme = createTheme();
 
-
 const Login = () => {
-  const { data} = useGetMeQuery()
-  
-  // const user = JSON.parse(localStorage.getItem('user'))
-  // console.log(user)
-  // localStorage.removeItem('user')
-
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(data)
-
 
   let navigate = useNavigate();
   const [loginUser] = useLoginUserMutation();
@@ -50,8 +39,8 @@ const Login = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginUser(userValues) 
-  }
+    loginUser(userValues);
+  };
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -98,10 +87,6 @@ const Login = () => {
               onChange={(e) => handleUserValueChange(e)}
               autoComplete="current-password"
             />
-            {/* <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            /> */}
             <Button
               type="submit"
               fullWidth

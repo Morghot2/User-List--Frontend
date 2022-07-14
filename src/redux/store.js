@@ -8,9 +8,6 @@ import currentUserLoginReducer from "./slices/currentUserLoginSlice";
 export default configureStore({
   reducer: {
     usersApi: usersApiReducer,
-
-
-    
     authApi: authApiReducer,
     currentUserApi: currentUserReducer,
     userState: currentUserLoginReducer,
