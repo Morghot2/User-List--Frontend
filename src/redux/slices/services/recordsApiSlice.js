@@ -36,7 +36,10 @@ export const recordsApi = createApi({
     }),
     removeRecord: builder.mutation({
       query: (id) => ({
-        url: "/:id",
+        url: `/${id}`,
+        headers: {
+            authorization: `Bearer ${JSON.parse(localStorage.getItem("user"))}`,
+          },
         method: "DELETE",
         body: id,
       }),

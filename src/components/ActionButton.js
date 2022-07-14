@@ -9,11 +9,15 @@ import {
   useGetCurrentUserQuery,
 } from "../redux/slices/services/apiSlice";
 
+import { useRemoveRecordMutation } from "../redux/slices/services/recordsApiSlice";
+
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const ActionButton = ({ position, action, userValues }) => {
+const ActionButton = ({ position, action, userValues, userInfo }) => {
   let buttonProperties = { text: '', color: '' };
+
+  const [removeRecord] = useRemoveRecordMutation();
 
   const [addUser] = useAddUserMutation();
   const [updateUser] = useUpdateUserMutation();
@@ -22,6 +26,7 @@ const ActionButton = ({ position, action, userValues }) => {
   const { data: currentUserData } = useGetCurrentUserQuery();
   const [changeButton] = useChangeButtonMutation();
   const currentUserPosition = currentUserData?.user;
+  console.log(userInfo._id)
 
 
   if (action === 'delete') {
@@ -38,6 +43,7 @@ const ActionButton = ({ position, action, userValues }) => {
   const handleUser = () => {
     if (action === 'delete') {
       removeUser({ position });
+      removeRecord(userInfo._id);
     } else if (data?.type === 'new') {
       addUser(userValues);
       changeButton({ show: !data.show, type: '' });
