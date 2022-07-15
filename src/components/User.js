@@ -7,7 +7,6 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 
 const User = ({ position, userInfo }) => {
-  console.log(userInfo)
 
   return (
     <TableRow>
@@ -16,10 +15,10 @@ const User = ({ position, userInfo }) => {
       <TableCell>{userInfo.email}</TableCell>
       <TableCell>{userInfo.age}</TableCell>
       <TableCell>
-        <ModifyButton action={"edit"} position={position} userInfo={userInfo}/>
+        <ModifyButton action={"edit"} userInfo={userInfo}/>
       </TableCell>
       <TableCell>
-        <ActionButton position={position} action={"delete"} userInfo={userInfo}></ActionButton>
+        <ActionButton action={"delete"} userInfo={userInfo}></ActionButton>
       </TableCell>
     </TableRow>
   );

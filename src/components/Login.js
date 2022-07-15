@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -16,13 +14,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useLoginUserMutation } from "../redux/slices/services/authApiSlice";
 
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 const theme = createTheme();
 
 const Login = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-
   let navigate = useNavigate();
   const [loginUser] = useLoginUserMutation();
 

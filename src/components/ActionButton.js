@@ -2,7 +2,7 @@ import React from "react";
 
 import { useRemoveRecordMutation } from "../redux/slices/services/recordsApiSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { changeModal, changeButtonType } from "../redux/slices/buttonSlice";
+import { changeModal} from "../redux/slices/buttonSlice";
 
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";

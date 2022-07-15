@@ -19,7 +19,7 @@ const theme = createTheme();
 
 const Registration = () => {
   let navigate = useNavigate();
-  const [registerUser] = useRegisterUserMutation()
+  const [registerUser] = useRegisterUserMutation();
 
   const [userValues, setUserValues] = useState({
     firstName: "",
@@ -44,9 +44,8 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerUser(userValues) 
-  }
-
+    registerUser(userValues);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -66,7 +65,7 @@ const Registration = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form"  onSubmit={handleSubmit}  sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField

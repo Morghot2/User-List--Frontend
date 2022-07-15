@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-
 import { useSelector, useDispatch } from "react-redux";
-import {changeModal, changeButtonType} from "../redux/slices/buttonSlice";
+import { changeModal } from "../redux/slices/buttonSlice";
 import { v4 as uuidv4 } from "uuid";
 
 import ActionButton from "./ActionButton";
@@ -17,11 +16,9 @@ import Typography from "@mui/material/Typography";
 import "../modal.css";
 
 const MyModal = () => {
-
   const dispatch = useDispatch();
   const isShown = useSelector((state) => state.buttonState.show);
   const type = useSelector((state) => state.buttonState.type);
-
 
   const [userValues, setUserValues] = useState({
     id: uuidv4(),
@@ -55,7 +52,9 @@ const MyModal = () => {
           }}
         >
           {" "}
-          <Typography variant="h5" data-testid="modal-heading">User details</Typography>
+          <Typography variant="h5" data-testid="modal-heading">
+            User details
+          </Typography>
           <Button
             color="error"
             size="medium"

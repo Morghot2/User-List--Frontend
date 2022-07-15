@@ -15,8 +15,6 @@ import TablePagination from "@mui/material/TablePagination";
 import User from "./User";
 
 const ListBody = () => {
-
-
   let navigate = useNavigate();
   const { page } = useParams();
   const { data, isFetching } = useGetRecordsQuery();
@@ -57,7 +55,9 @@ const ListBody = () => {
                 parseInt(page) * rowsPerPage + rowsPerPage
               )
               .map((user) => {
-                return <User key={user._id} userInfo={data[data.indexOf(user)]}/>;
+                return (
+                  <User key={user._id} userInfo={data[data.indexOf(user)]} />
+                );
               })}
           </TableBody>
         </Table>
