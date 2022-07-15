@@ -87,7 +87,13 @@ const MyModal = () => {
               />
             </Grid>
             <Grid item>
-              <TextField id="email" name="email" label="Email" type="text" />
+              <TextField
+                id="email"
+                name="email"
+                label="Email"
+                type="text"
+                onChange={(e) => handleUserValueChange(e)}
+              />
             </Grid>
             <Grid item>
               <TextField

@@ -5,6 +5,7 @@ import {
   useUpdateRecordMutation,
   useRemoveRecordMutation,
 } from "../redux/slices/services/recordsApiSlice";
+import {useGetMeQuery} from "../redux/slices/services/currentUserApiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { changeModal } from "../redux/slices/buttonSlice";
 
@@ -12,6 +13,9 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const ActionButton = ({ action, userValues, userInfo }) => {
+
+  const recordToChangeId = useSelector((state) => state.buttonState.record);
+
   const [addRecord] = useAddRecordMutation();
   const [updateRecord] = useUpdateRecordMutation();
   const dispatch = useDispatch();
@@ -20,7 +24,6 @@ const ActionButton = ({ action, userValues, userInfo }) => {
   let buttonProperties = { text: "", color: "" };
 
   const [removeRecord] = useRemoveRecordMutation();
-
   if (action === "delete") {
     buttonProperties.text = <DeleteIcon />;
     buttonProperties.color = "error";
@@ -31,21 +34,18 @@ const ActionButton = ({ action, userValues, userInfo }) => {
     buttonProperties.text = "Add";
     buttonProperties.color = "success";
   }
-  console.log(userValues);
 
   const handleUser = () => {
     if (action === "delete") {
-      // removeUser({ position });
       removeRecord(userInfo._id);
+      console.log(userInfo._id);
     } else if (type === "new") {
-      // addUser(userValues);
       addRecord(userValues);
       dispatch(changeModal(!isShown));
-      // changeButton({ show: !data.show, type: '' });
     } else if (type === "edit") {
       // updateUser({ userValues, currentUserPosition });
+      updateRecord({recordToChangeId, userValues});
       dispatch(changeModal(!isShown));
-      // changeButton({ show: !data.show, type: '' });
     }
   };
 

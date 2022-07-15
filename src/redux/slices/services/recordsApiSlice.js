@@ -26,10 +26,10 @@ export const recordsApi = createApi({
       invalidatesTags: ["Records"],
     }),
     updateRecord: builder.mutation({
-      query: (id) => ({
-        url: `/${id}`,
+      query: (editedRecord) => ({
+        url: `/${editedRecord.recordToChangeId}`,
         method: "PUT",
-        body: id,
+        body: editedRecord.userValues,
       }),
       invalidatesTags: ["Records"],
     }),

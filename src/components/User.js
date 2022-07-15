@@ -15,7 +15,7 @@ const User = ({ userInfo }) => {
       <TableCell>{userInfo.email}</TableCell>
       <TableCell>{userInfo.age}</TableCell>
       <TableCell>
-        <ModifyButton action={"edit"}/>
+        <ModifyButton action={"edit"} userInfo={userInfo}/>
       </TableCell>
       <TableCell>
         <ActionButton action={"delete"} userInfo={userInfo}></ActionButton>

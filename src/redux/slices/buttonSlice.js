@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import produce from "immer";
 
 const initialState = {
   show: false,
   type: "",
+  record: "",
 };
 
 const buttonSlice = createSlice({
@@ -11,17 +11,16 @@ const buttonSlice = createSlice({
   initialState,
   reducers: {
     changeModal: (state, action) => {
-      return produce(state, (draftState) => {
-        return (draftState = { ...state, show: action.payload });
-      });
+      return { ...state, show: action.payload };
     },
     changeButtonType: (state, action) => {
-      return produce(state, (draftState) => {
-        return (draftState = { ...state, type: action.payload });
-      });
+      return { ...state, type: action.payload };
+    },
+    changeEditedRecord: (state, action) => {
+      return { ...state, record: action.payload };
     },
   },
 });
 
-export const { changeModal, changeButtonType } = buttonSlice.actions;
+export const { changeModal, changeButtonType, changeEditedRecord } = buttonSlice.actions;
 export default buttonSlice.reducer;
