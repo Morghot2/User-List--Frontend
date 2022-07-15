@@ -8,19 +8,19 @@ import MyModal from "./Modal";
 
 
 import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
-import { useGetButtonQuery } from "../redux/slices/services/apiSlice";
+import {useSelector} from "react-redux";
 
 const MainPage = (props) => {
-  const { data, isLoading, isError } = useGetRecordsQuery();
+  const isShown = useSelector((state) => state.buttonState.show);
+  const { data, isLoading } = useGetRecordsQuery();
   if (isLoading)  { return <div>Loading...</div>; }
-  console.log(data)
 
   // const { data } = useGetButtonQuery();
   return (
     <>
       <Header />
       <ListBody />
-      {data?.show && <MyModal />}
+      {isShown && <MyModal />}
       {/* <Outlet /> */}
     </>
   );

@@ -4,7 +4,8 @@ import {
   useChangeButtonMutation,
   useGetButtonQuery,
 } from "../redux/slices/services/apiSlice";
-
+import { useSelector, useDispatch } from "react-redux";
+import {changeModal, changeButtonType} from "../redux/slices/buttonSlice";
 import { v4 as uuidv4 } from "uuid";
 
 import ActionButton from "./ActionButton";
@@ -19,6 +20,13 @@ import Typography from "@mui/material/Typography";
 import "../modal.css";
 
 const MyModal = () => {
+
+  const dispatch = useDispatch();
+  const isShown = useSelector((state) => state.buttonState.show);
+  const type = useSelector((state) => state.buttonState.type);
+
+
+
   const [changeButton] = useChangeButtonMutation();
   const { data, isFetching } = useGetButtonQuery();
 
@@ -42,8 +50,8 @@ const MyModal = () => {
   return (
     <Modal
       className="modal"
-      open={data.show}
-      onClose={() => changeButton({ show: false, type: "" })}
+      open={isShown}
+      onClose={() => dispatch(changeModal(!type))}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -60,7 +68,7 @@ const MyModal = () => {
           <Button
             color="error"
             size="medium"
-            onClick={() => changeButton({ show: false, type: "" })}
+            onClick={() => dispatch(changeModal(!type))}
           >
             <CloseIcon />
           </Button>

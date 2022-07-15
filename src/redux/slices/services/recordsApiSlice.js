@@ -7,10 +7,7 @@ export const recordsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api/users",
     prepareHeaders: (headers) => {
-      headers.set(
-        "authorization",
-        `Bearer ${JSON.parse(localStorage.getItem("user"))}`
-      );
+      headers.set("authorization", `Bearer ${JSON.parse(localStorage.getItem("user"))}`);
       return headers;
     },
   }),
@@ -31,10 +28,10 @@ export const recordsApi = createApi({
       invalidatesTags: ["Records"],
     }),
     updateRecord: builder.mutation({
-      query: (record) => ({
-        url: "/:id",
+      query: (id) => ({
+        url: `/${id}`,
         method: "PUT",
-        body: record,
+        body: id,
       }),
       invalidatesTags: ["Records"],
     }),

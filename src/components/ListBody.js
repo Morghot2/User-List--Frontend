@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import { useGetUsersQuery } from "../redux/slices/services/apiSlice";
 import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
 
 import { useNavigate, useParams } from "react-router-dom";

@@ -4,11 +4,16 @@ import {
   useChangeCurrentUserMutation,
   useGetButtonQuery,
 } from "../redux/slices/services/apiSlice";
+import {useSelector, useDispatch} from "react-redux";
+import {changeModal, changeButtonType} from "../redux/slices/buttonSlice";
 
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 
-const ModifyButton = ({ action, position }) => {
+const ModifyButton = ({ action }) => {
+
+  const dispatch = useDispatch();
+  const type = useSelector((state) => state.buttonState.show);
 
   const [changeButton] = useChangeButtonMutation();
   const { data, isFetching } = useGetButtonQuery();
@@ -18,10 +23,8 @@ const ModifyButton = ({ action, position }) => {
 
 
   const handleButtonClick = () => {
-    changeButton({ show: !data.show, type: action });
-    if (position >= 0) {
-      changeCurrentUser({position});
-    }
+    dispatch(changeModal(!type));
+    dispatch(changeButtonType(action));
   };
 
   if (action === "new") {
