@@ -1,4 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+import { useRegisterUserMutation } from "../redux/slices/services/authApiSlice";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -12,9 +15,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { useNavigate } from "react-router-dom";
-// import { formControlClasses } from "@mui/material";
-import { useRegisterUserMutation } from "../redux/slices/services/authApiSlice";
+
 const theme = createTheme();
 
 const Registration = () => {
@@ -27,13 +28,7 @@ const Registration = () => {
     email: "",
     password: "",
   });
-  // const handleUserValueChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setUserValues({
-  //     ...userValues,
-  //     [name]: value,
-  //   });
-  // };
+
   const handleUserValueChange = (e) => {
     const { name, value } = e.target;
     setUserValues({
@@ -45,6 +40,7 @@ const Registration = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     registerUser(userValues);
+    navigate("/");
   };
 
   return (
@@ -119,7 +115,6 @@ const Registration = () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              // onClick={() => registerUser(userValues)}
             >
               Sign Up
             </Button>

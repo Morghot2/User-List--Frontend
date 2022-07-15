@@ -1,11 +1,6 @@
 import React from "react";
 
-import {
-  useAddRecordMutation,
-  useUpdateRecordMutation,
-  useRemoveRecordMutation,
-} from "../redux/slices/services/recordsApiSlice";
-import {useGetMeQuery} from "../redux/slices/services/currentUserApiSlice";
+import { useAddRecordMutation, useUpdateRecordMutation, useRemoveRecordMutation } from "../redux/slices/services/recordsApiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { changeModal } from "../redux/slices/buttonSlice";
 
@@ -38,12 +33,10 @@ const ActionButton = ({ action, userValues, userInfo }) => {
   const handleUser = () => {
     if (action === "delete") {
       removeRecord(userInfo._id);
-      console.log(userInfo._id);
     } else if (type === "new") {
       addRecord(userValues);
       dispatch(changeModal(!isShown));
     } else if (type === "edit") {
-      // updateUser({ userValues, currentUserPosition });
       updateRecord({recordToChangeId, userValues});
       dispatch(changeModal(!isShown));
     }

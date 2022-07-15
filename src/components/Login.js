@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useLoginUserMutation } from "../redux/slices/services/authApiSlice";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,9 +15,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { useLoginUserMutation } from "../redux/slices/services/authApiSlice";
 
-import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
@@ -53,13 +55,10 @@ const Login = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in
           </Typography>
           <form
-            // component="form"
             onSubmit={handleSubmit}
-            // noValidate
-            // sx={{ mt: 1 }}
           >
             <TextField
               margin="normal"
@@ -89,7 +88,7 @@ const Login = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Log In
             </Button>
             <Grid container>
               <Grid item>

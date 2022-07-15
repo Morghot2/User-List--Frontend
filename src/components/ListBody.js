@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
-import { useNavigate, useParams } from "react-router-dom";
 
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
