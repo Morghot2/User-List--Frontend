@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-//LATER HAVE TO "PREPARE HEADERS" instead of single request - just not to forget
-
 export const recordsApi = createApi({
   reducerPath: "recordsApi",
   baseQuery: fetchBaseQuery({
@@ -52,7 +50,3 @@ export const {
   useRemoveRecordMutation,
 } = recordsApi;
 export default recordsApi.reducer;
-
-// headers: {
-//   authorization: `Bearer ${JSON.parse(localStorage.getItem("user"))}`,
-// },

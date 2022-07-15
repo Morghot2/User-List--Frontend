@@ -17,8 +17,6 @@ export const authApi = createApi({
           body: data,
         };
       },
-      // transformResponse: (response, meta, arg) =>
-      //   localStorage.setItem("user", JSON.stringify(response.token)),
     }),
     loginUser: builder.mutation({
       query(data) {

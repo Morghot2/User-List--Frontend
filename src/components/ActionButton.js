@@ -1,13 +1,19 @@
 import React from "react";
 
-import { useRemoveRecordMutation } from "../redux/slices/services/recordsApiSlice";
+import {
+  useAddRecordMutation,
+  useUpdateRecordMutation,
+  useRemoveRecordMutation,
+} from "../redux/slices/services/recordsApiSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { changeModal} from "../redux/slices/buttonSlice";
+import { changeModal } from "../redux/slices/buttonSlice";
 
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const ActionButton = ({ action, userValues, userInfo }) => {
+  const [addRecord] = useAddRecordMutation();
+  const [updateRecord] = useUpdateRecordMutation();
   const dispatch = useDispatch();
   const isShown = useSelector((state) => state.buttonState.show);
   const type = useSelector((state) => state.buttonState.type);
@@ -25,6 +31,7 @@ const ActionButton = ({ action, userValues, userInfo }) => {
     buttonProperties.text = "Add";
     buttonProperties.color = "success";
   }
+  console.log(userValues);
 
   const handleUser = () => {
     if (action === "delete") {
@@ -32,6 +39,7 @@ const ActionButton = ({ action, userValues, userInfo }) => {
       removeRecord(userInfo._id);
     } else if (type === "new") {
       // addUser(userValues);
+      addRecord(userValues);
       dispatch(changeModal(!isShown));
       // changeButton({ show: !data.show, type: '' });
     } else if (type === "edit") {

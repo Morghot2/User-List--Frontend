@@ -1,21 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 import produce from "immer";
-
 
 const initialState = {
   _id: "",
   firstName: "",
   lastName: "",
-  email: ""
-}
+  email: "",
+};
 
 export const currentUserLoginSlice = createSlice({
   initialState,
-  name: 'currentUserSlice',
+  name: "currentUserSlice",
   reducers: {
     logout: () => initialState,
     setUser: (state, action) => {
-      return {...action.payload}
+      return { ...action.payload };
     },
   },
 });
@@ -23,7 +22,3 @@ export const currentUserLoginSlice = createSlice({
 export default currentUserLoginSlice.reducer;
 
 export const { logout, setUser } = currentUserLoginSlice.actions;
-
-
-
-

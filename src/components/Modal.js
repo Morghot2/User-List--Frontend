@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { changeModal } from "../redux/slices/buttonSlice";
-import { v4 as uuidv4 } from "uuid";
 
 import ActionButton from "./ActionButton";
 import Box from "@mui/material/Box";
@@ -21,13 +20,11 @@ const MyModal = () => {
   const type = useSelector((state) => state.buttonState.type);
 
   const [userValues, setUserValues] = useState({
-    id: uuidv4(),
     firstName: "",
     lastName: "",
     email: "",
-    age: 0,
+    age: "0",
   });
-
   const handleUserValueChange = (e) => {
     const { name, value } = e.target;
     setUserValues({
@@ -77,8 +74,7 @@ const MyModal = () => {
                 name="firstName"
                 label="First Name"
                 type="text"
-                value={userValues.name}
-                onChange={handleUserValueChange}
+                onChange={(e) => handleUserValueChange(e)}
               />
             </Grid>
             <Grid item>
@@ -87,19 +83,11 @@ const MyModal = () => {
                 name="lastName"
                 label="Last Name"
                 type="text"
-                value={userValues.name}
-                onChange={handleUserValueChange}
+                onChange={(e) => handleUserValueChange(e)}
               />
             </Grid>
             <Grid item>
-              <TextField
-                id="email"
-                name="email"
-                label="Email"
-                type="text"
-                value={userValues.name}
-                onChange={handleUserValueChange}
-              />
+              <TextField id="email" name="email" label="Email" type="text" />
             </Grid>
             <Grid item>
               <TextField
@@ -107,8 +95,7 @@ const MyModal = () => {
                 name="age"
                 label="Age"
                 type="number"
-                value={userValues.name}
-                onChange={handleUserValueChange}
+                onChange={(e) => handleUserValueChange(e)}
               />
             </Grid>
             <ActionButton userValues={userValues} action={"edit"} />
