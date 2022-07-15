@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  useChangeButtonMutation,
-  useChangeCurrentUserMutation,
-  useGetButtonQuery,
-} from "../redux/slices/services/apiSlice";
+
 import {useSelector, useDispatch} from "react-redux";
 import {changeModal, changeButtonType} from "../redux/slices/buttonSlice";
 
@@ -14,12 +10,6 @@ const ModifyButton = ({ action }) => {
 
   const dispatch = useDispatch();
   const type = useSelector((state) => state.buttonState.show);
-
-  const [changeButton] = useChangeButtonMutation();
-  const { data, isFetching } = useGetButtonQuery();
-  const [changeCurrentUser] = useChangeCurrentUserMutation();
-
-  if (isFetching) return "Loading"
 
 
   const handleButtonClick = () => {

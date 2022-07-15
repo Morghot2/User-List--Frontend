@@ -57,7 +57,7 @@ const ListBody = () => {
                 parseInt(page) * rowsPerPage + rowsPerPage
               )
               .map((user) => {
-                return <User key={user.id} position={data.indexOf(user)} userInfo={data[data.indexOf(user)]}/>;
+                return <User key={user._id} userInfo={data[data.indexOf(user)]}/>;
               })}
           </TableBody>
         </Table>

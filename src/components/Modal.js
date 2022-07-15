@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 
-import {
-  useChangeButtonMutation,
-  useGetButtonQuery,
-} from "../redux/slices/services/apiSlice";
+
 import { useSelector, useDispatch } from "react-redux";
 import {changeModal, changeButtonType} from "../redux/slices/buttonSlice";
 import { v4 as uuidv4 } from "uuid";
@@ -26,10 +23,6 @@ const MyModal = () => {
   const type = useSelector((state) => state.buttonState.type);
 
 
-
-  const [changeButton] = useChangeButtonMutation();
-  const { data, isFetching } = useGetButtonQuery();
-
   const [userValues, setUserValues] = useState({
     id: uuidv4(),
     firstName: "",
@@ -45,8 +38,6 @@ const MyModal = () => {
       [name]: value,
     });
   };
-  if (isFetching) return "Loading"
-
   return (
     <Modal
       className="modal"
