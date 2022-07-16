@@ -12,6 +12,7 @@ const LoginButton = () => {
   const handleClick = async () => {
     navigate("/login");
     window.location.reload();
+   
   };
 
   if (localStorage.getItem("user")) {
