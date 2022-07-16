@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import ListBody from "./ListBody";
 import MyModal from "./Modal";
-
+import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector } from "react-redux";
 
 const MainPage = (props) => {

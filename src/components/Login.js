@@ -15,8 +15,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-
-
 const theme = createTheme();
 
 const Login = () => {
@@ -57,9 +55,7 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             Log in
           </Typography>
-          <form
-            onSubmit={handleSubmit}
-          >
+          <form onSubmit={handleSubmit}>
             <TextField
               margin="normal"
               required

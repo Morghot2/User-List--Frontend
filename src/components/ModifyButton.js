@@ -1,7 +1,11 @@
 import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { changeModal, changeButtonType, changeEditedRecord } from "../redux/slices/buttonSlice";
+import {
+  changeModal,
+  changeButtonType,
+  changeEditedRecord,
+} from "../redux/slices/buttonSlice";
 
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
@@ -13,7 +17,7 @@ const ModifyButton = ({ action, userInfo }) => {
   const handleButtonClick = () => {
     dispatch(changeModal(!type));
     dispatch(changeButtonType(action));
-    action === "edit" ? dispatch(changeEditedRecord(userInfo._id)): null
+    action === "edit" ? dispatch(changeEditedRecord(userInfo._id)) : null;
   };
 
   if (action === "new") {

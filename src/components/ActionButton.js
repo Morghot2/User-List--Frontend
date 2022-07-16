@@ -1,6 +1,10 @@
 import React from "react";
 
-import { useAddRecordMutation, useUpdateRecordMutation, useRemoveRecordMutation } from "../redux/slices/services/recordsApiSlice";
+import {
+  useAddRecordMutation,
+  useUpdateRecordMutation,
+  useRemoveRecordMutation,
+} from "../redux/slices/services/recordsApiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { changeModal } from "../redux/slices/buttonSlice";
 
@@ -8,7 +12,6 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const ActionButton = ({ action, userValues, userInfo }) => {
-
   const recordToChangeId = useSelector((state) => state.buttonState.record);
 
   const [addRecord] = useAddRecordMutation();
@@ -37,7 +40,7 @@ const ActionButton = ({ action, userValues, userInfo }) => {
       addRecord(userValues);
       dispatch(changeModal(!isShown));
     } else if (type === "edit") {
-      updateRecord({recordToChangeId, userValues});
+      updateRecord({ recordToChangeId, userValues });
       dispatch(changeModal(!isShown));
     }
   };
