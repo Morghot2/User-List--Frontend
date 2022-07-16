@@ -10,6 +10,7 @@ const LoginButton = () => {
   const navigate = useNavigate();
 
   const handleClick = async () => {
+    localStorage.getItem("user") ? localStorage.removeItem("user") : null;
     navigate("/login");
     window.location.reload();
    
