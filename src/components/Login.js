@@ -35,7 +35,10 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser(userValues);
-    navigate("/");
+    setTimeout(() => {
+      navigate("/");
+    }, 500);
+    
   };
   return (
     <ThemeProvider theme={theme}>

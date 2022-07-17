@@ -1,9 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
+
+
 export const recordsApi = createApi({
   reducerPath: "recordsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/users",
+    baseUrl: `${API_URL}/api/users`,
     prepareHeaders: (headers) => {
       headers.set("authorization", `Bearer ${JSON.parse(localStorage.getItem("user"))}`);
       return headers;

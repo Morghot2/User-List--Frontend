@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setUser } from "../currentUserLoginSlice.js";
 
-const BASE_URL = process.env.REACT_APP_SERVER_ENDPOINT;
+const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
 export const currentUserApi = createApi({
   reducerPath: "currentUserApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `http://localhost:5000/api/appusers`,
+    baseUrl: `${API_URL}/api/appusers`,
   }),
   tagTypes: ["User"],
   endpoints: (builder) => ({

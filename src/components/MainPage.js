@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
 
@@ -10,10 +12,16 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector } from "react-redux";
 
 const MainPage = (props) => {
+  const navigate = useNavigate();
+  if (!localStorage.getItem("user")) {
+    navigate("/login");
+  }
+
+
   const isShown = useSelector((state) => state.buttonState.show);
   const { isFetching } = useGetRecordsQuery();
 
-  if (isFetching) return <CircularProgress color="secondary" />
+  if (isFetching) return <CircularProgress color="secondary" />;
 
   return (
     <>

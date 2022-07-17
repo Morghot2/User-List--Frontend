@@ -2,12 +2,12 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { currentUserApi } from "./currentUserApiSlice";
 import { recordsApi } from "./recordsApiSlice";
 
-const BASE_URL = process.env.REACT_APP_SERVER_ENDPOINT;
+const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `http://localhost:5000/api/appusers`,
+    baseUrl: `${API_URL}/api/appusers`,
   }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
@@ -30,12 +30,12 @@ export const authApi = createApi({
       },
       transformResponse: (response, meta, arg) =>
         localStorage.setItem("user", JSON.stringify(response.token)),
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        try {
-          await queryFulfilled;
-          await dispatch(recordsApi.endpoints.getRecords.initiate());
-        } catch (error) {}
-      },
+      // async onQueryStarted(args, { dispatch, queryFulfilled }) {
+      //   try {
+      //     await queryFulfilled;
+      //     await dispatch(recordsApi.endpoints.getRecords.initiate());
+      //   } catch (error) {}
+      // },
     }),
   }),
 });
