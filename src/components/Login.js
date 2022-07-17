@@ -37,7 +37,7 @@ const Login = () => {
     loginUser(userValues);
     setTimeout(() => {
       navigate("/");
-    }, 500);
+    }, 700);
     
   };
   return (
