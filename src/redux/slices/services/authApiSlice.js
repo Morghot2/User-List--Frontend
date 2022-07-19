@@ -4,6 +4,8 @@ import { recordsApi } from "./recordsApiSlice";
 
 const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
+//CHANGING TO COOKIES
+
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
