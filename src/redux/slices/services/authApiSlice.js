@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { currentUserApi } from "./currentUserApiSlice";
 import { recordsApi } from "./recordsApiSlice";
+import { setUser } from "../currentUserLoginSlice.js";
 
 const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
-
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -27,7 +26,6 @@ export const authApi = createApi({
           url: "/login",
           method: "POST",
           body: data,
-          
         };
       },
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
@@ -37,8 +35,26 @@ export const authApi = createApi({
         } catch (error) {}
       },
     }),
+    logoutUser: builder.mutation({
+      query() {
+        return {
+          url: "/logout",
+          method: "POST",
+        };
+      },
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUser(data));
+        } catch (error) {}
+      },
+    }),
   }),
 });
 
-export const { useLoginUserMutation, useRegisterUserMutation } = authApi;
+export const { useLogoutUserMutation, useLoginUserMutation, useRegisterUserMutation } = authApi;
 export default authApi.reducer;
+
+
+// transformResponse: (response, meta, arg) =>
+// localStorage.setItem("user", JSON.stringify(response.token)),
