@@ -1,5 +1,3 @@
-import React from "react";
-
 import ActionButton from "./ActionButton";
 import ModifyButton from "./ModifyButton";
 

@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-
 import CircularProgress from '@mui/material/CircularProgress';
 
 const MainPage = React.lazy(() => import("./MainPage"));

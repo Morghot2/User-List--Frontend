@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
@@ -14,6 +14,7 @@ import TablePagination from "@mui/material/TablePagination";
 import User from "./User";
 
 const ListBody = () => {
+
   let navigate = useNavigate();
   const { page } = useParams();
   const { data, isFetching } = useGetRecordsQuery();
@@ -31,7 +32,7 @@ const ListBody = () => {
   useEffect(() => {
     navigate(`0`);
   }, []);
-  if (isFetching) return null;
+  if (isFetching ) return null;
 
   return (
     <>
