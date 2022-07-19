@@ -7,10 +7,7 @@ export const recordsApi = createApi({
   reducerPath: "recordsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${API_URL}/api/users`,
-    prepareHeaders: (headers) => {
-      headers.set("authorization", `Bearer ${JSON.parse(localStorage.getItem("user"))}`);
-      return headers;
-    },
+    credentials: "include",
   }),
   tagTypes: ["Records"],
   endpoints: (builder) => ({

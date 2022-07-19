@@ -4,12 +4,12 @@ import { recordsApi } from "./recordsApiSlice";
 
 const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
-//CHANGING TO COOKIES
 
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${API_URL}/api/appusers`,
+    credentials: "include",
   }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
@@ -27,17 +27,15 @@ export const authApi = createApi({
           url: "/login",
           method: "POST",
           body: data,
-          credentials: "include",
+          
         };
       },
-      transformResponse: (response, meta, arg) =>
-        localStorage.setItem("user", JSON.stringify(response.token)),
-      // async onQueryStarted(args, { dispatch, queryFulfilled }) {
-      //   try {
-      //     await queryFulfilled;
-      //     await dispatch(recordsApi.endpoints.getRecords.initiate());
-      //   } catch (error) {}
-      // },
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          await dispatch(recordsApi.endpoints.getRecords.initiate());
+        } catch (error) {}
+      },
     }),
   }),
 });

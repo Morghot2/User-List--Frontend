@@ -12,10 +12,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useSelector } from "react-redux";
 
 const MainPage = (props) => {
-  const navigate = useNavigate();
-  if (!localStorage.getItem("user")) {
-    navigate("/login");
-  }
+  // const navigate = useNavigate();
+  // if (!localStorage.getItem("user")) {
+  //   navigate("/login");
+  // }
 
 
   const isShown = useSelector((state) => state.buttonState.show);

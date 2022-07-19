@@ -7,6 +7,7 @@ export const currentUserApi = createApi({
   reducerPath: "currentUserApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${API_URL}/api/appusers`,
+    credentials: "include",
   }),
   tagTypes: ["User"],
   endpoints: (builder) => ({
@@ -14,9 +15,6 @@ export const currentUserApi = createApi({
       query() {
         return {
           url: "/me",
-          headers: {
-            authorization: `Bearer ${JSON.parse(localStorage.getItem("user"))}`,
-          },
           credentials: "include",
         };
       },
