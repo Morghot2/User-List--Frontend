@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { recordsApi } from "./recordsApiSlice";
 import { setUser } from "../currentUserLoginSlice.js";
+import {currentUserApi} from "./currentUserApiSlice";
 
 const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
@@ -31,7 +32,7 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
-          await dispatch(recordsApi.endpoints.getRecords.initiate());
+          await dispatch(currentUserApi.endpoints.getMe.initiate());
         } catch (error) {}
       },
     }),
@@ -44,7 +45,7 @@ export const authApi = createApi({
       },
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
-          const { data } = await queryFulfilled;
+          const { data } = await queryFulfilled
           dispatch(setUser(data));
         } catch (error) {}
       },

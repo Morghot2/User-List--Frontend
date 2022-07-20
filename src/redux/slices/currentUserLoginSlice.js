@@ -5,13 +5,13 @@ const initialState = {
   firstName: "",
   lastName: "",
   email: "",
+  isLogged: false,
 };
 
 export const currentUserLoginSlice = createSlice({
   initialState,
   name: "currentUserSlice",
   reducers: {
-    logout: () => initialState,
     setUser: (state, action) => {
       return { ...action.payload };
     },
@@ -20,4 +20,4 @@ export const currentUserLoginSlice = createSlice({
 
 export default currentUserLoginSlice.reducer;
 
-export const { logout, setUser } = currentUserLoginSlice.actions;
+export const { setUser } = currentUserLoginSlice.actions;

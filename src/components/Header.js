@@ -1,5 +1,5 @@
 import ModifyButton from "./ModifyButton";
-import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 import { useGetMeQuery } from "../redux/slices/services/currentUserApiSlice";
 
 const Header = () => {
@@ -12,7 +12,7 @@ const Header = () => {
       <div className="header">
         <ModifyButton action={"new"} />
 
-        <LoginButton />
+        <LogoutButton />
       </div>
     </>
   );
