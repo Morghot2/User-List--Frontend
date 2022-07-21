@@ -1,5 +1,9 @@
 import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+import { io } from "socket.io-client";
+
+
+
 
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -9,6 +13,7 @@ const Login = React.lazy(() => import("./Login"));
 const Registration = React.lazy(() => import("./Registration"));
 
 const App = () => {
+  const socket = io("http://localhost:5000");
 
   return (
     <Routes>

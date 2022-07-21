@@ -15,11 +15,7 @@ const MainPage = (props) => {
   const navigate = useNavigate();
   const isShown = useSelector((state) => state.buttonState.show);
   const isLogged = useSelector((state) => state.userState.isLogged);
-  useEffect(() => {
-    if (!isLogged) {
-      navigate("/login");
-    }
-  }, [isLogged]);
+
   
 
   const { isFetching, isError } = useGetRecordsQuery();

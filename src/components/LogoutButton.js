@@ -12,7 +12,7 @@ const LogoutButton = () => {
   const isLoggedIn = useSelector((state) => state.userState._id);
   const navigate = useNavigate();
   const handleClick = async () => {
-    navigate("/register");
+    navigate("/login");
     logoutUser();
    
   };

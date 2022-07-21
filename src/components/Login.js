@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useLoginUserMutation } from "../redux/slices/services/authApiSlice";
@@ -20,6 +20,7 @@ const theme = createTheme();
 const Login = () => {
   let navigate = useNavigate();
   const [loginUser] = useLoginUserMutation();
+  const [isLogged, setIsLogged] = useState(false);
 
   const [userValues, setUserValues] = useState({
     email: "",
@@ -38,7 +39,8 @@ const Login = () => {
     setTimeout(() => {
       navigate("/");
     }, 700);
-    
+  
+
   };
   return (
     <ThemeProvider theme={theme}>

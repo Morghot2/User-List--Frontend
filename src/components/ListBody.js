@@ -51,8 +51,8 @@ const ListBody = () => {
           <TableBody>
             {data
               ?.slice(
-                parseInt(page) * rowsPerPage,
-                parseInt(page) * rowsPerPage + rowsPerPage
+                parseInt(page || 0) * rowsPerPage,
+                parseInt(page || 0) * rowsPerPage + rowsPerPage
               )
               .map((user) => {
                 return (
@@ -66,7 +66,7 @@ const ListBody = () => {
           component="div"
           count={data?.length}
           rowsPerPage={rowsPerPage}
-          page={parseInt(page)}
+          page={parseInt(page) || 0}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />

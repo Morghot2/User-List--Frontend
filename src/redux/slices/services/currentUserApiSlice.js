@@ -9,7 +9,6 @@ export const currentUserApi = createApi({
     baseUrl: `${API_URL}/api/appusers`,
     credentials: "include",
   }),
-  tagTypes: ["User"],
   endpoints: (builder) => ({
     getMe: builder.query({
       query() {
