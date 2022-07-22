@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
 
-import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import ListBody from "./ListBody";
 import MyModal from "./Modal";
@@ -32,7 +31,6 @@ const MainPage = (props) => {
       <Header />
       <ListBody />
       {isShown && <MyModal />}
-      {/* <Outlet /> */}
     </>
   );
 };
