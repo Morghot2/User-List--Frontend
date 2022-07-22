@@ -18,7 +18,7 @@ const App = () => {
     console.log("socket connected on rtk query");
   }
   );
-  
+
 
   return (
     <Routes>

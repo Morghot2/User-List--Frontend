@@ -15,33 +15,33 @@ export const recordsApi = createApi({
       query: () => ({
         url: "/",
       }),
-      // async onCacheEntryAdded(
-      //   arg,
-      //   { updateCachedData, cacheDataLoaded, cacheEntryRemoved }
-      // ) {
-      //   try {
-      //     // wait for the initial query to resolve before proceeding
-      //     await cacheDataLoaded;
+      async onCacheEntryAdded(
+        arg,
+        { updateCachedData, cacheDataLoaded, cacheEntryRemoved }
+      ) {
+        try {
+          // wait for the initial query to resolve before proceeding
+          await cacheDataLoaded;
 
-      //     const socket = io("http://localhost:5000", { path: "/api/users" });
-      //     console.log(`socket.connected: ${socket.connected}`);
-      //     socket.on("connect", () => {
-      //       console.log("socket connected on rtk query");
-      //     });
+          const socket = io("http://localhost:5000");
+          console.log(`socket.connected: ${socket.connected}`);
+          socket.on("connect", () => {
+            console.log("socket connected on rtk query");
+          });
 
-      //     socket.on("message", (message) => {
-      //       console.log(`received message: ${message}`);
-      //       // updateCachedData((draft) => {
-      //       //     draft.push(message);
-      //       // });
-      //     });
+          socket.on("message", (message) => {
+            console.log(`received message: ${message}`);
+            // updateCachedData((draft) => {
+            //     draft.push(message);
+            // });
+          });
 
-      //     await cacheEntryRemoved;
-      //   } catch {
-      //     // no-op in case `cacheEntryRemoved` resolves before `cacheDataLoaded`,
-      //     // in which case `cacheDataLoaded` will throw
-      //   }
-      // },
+          await cacheEntryRemoved;
+        } catch {
+          // no-op in case `cacheEntryRemoved` resolves before `cacheDataLoaded`,
+          // in which case `cacheDataLoaded` will throw
+        }
+      },
       providesTags: ["Records"],
     }),
     addRecord: builder.mutation({
