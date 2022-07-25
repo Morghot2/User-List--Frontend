@@ -26,8 +26,12 @@ export const recordsApi = createApi({
             withCredentials: true,
           });
           console.log(`socket.connected: ${socket.connected}`);
-          socket.on("connect", () => {
+          socket.on("Trying", (data) => {
+            console.log(data)
             console.log("socket connected on rtk query");
+            updateCachedData((draft) => {
+              draft.push(data);
+            });
           });
           await cacheEntryRemoved;
         } catch {
