@@ -13,11 +13,11 @@ const Login = React.lazy(() => import("./Login"));
 const Registration = React.lazy(() => import("./Registration"));
 
 const App = () => {
-  const socket = io("http://localhost:5000");
-  socket.on("connect", () => {
-    console.log("socket connected on rtk query");
-  }
-  );
+  //   const socket = io("http://localhost:5000");
+  //   socket.on("connect", () => {
+  //     console.log("socket connected on rtk query");
+  //   }
+  // );
 
 
   return (
