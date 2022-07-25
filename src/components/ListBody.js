@@ -19,6 +19,7 @@ const ListBody = () => {
   const { page } = useParams();
   const { data, isFetching } = useGetRecordsQuery();
 
+
   const [rowsPerPage, setRowsPerPage] = useState(3);
 
   const handleChangePage = (event, newPage) => {
@@ -33,6 +34,7 @@ const ListBody = () => {
     navigate(`0`);
   }, []);
   if (isFetching ) return null;
+  console.log(data)
 
   return (
     <>

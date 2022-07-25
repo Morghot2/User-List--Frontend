@@ -25,19 +25,19 @@ export const recordsApi = createApi({
             path: "/api/users",
             withCredentials: true,
           });
-          console.log(`socket.connected: ${socket.connected}`);
-          socket.on("Trying", (data) => {
-            console.log(data)
-            console.log("socket connected on rtk query");
+
+          socket.on("connect", () => {
             updateCachedData((draft) => {
-              draft.push(data);
+              return [...draft, response];
             });
           });
+          console.log(`Socket: ${socket.connected}`);
           await cacheEntryRemoved;
         } catch {
           console.log("error");
         }
       },
+
       providesTags: ["Records"],
     }),
     addRecord: builder.mutation({
