@@ -22,15 +22,20 @@ export const recordsApi = createApi({
         try {
           await cacheDataLoaded;
           const socket = io(API_URL, {
-            path: "/api/users",
+            // path: "/api/users",
             withCredentials: true,
           });
+          console.log(`Socket: ${socket.connected}`);
 
-          socket.on("connect", () => {
+          socket.on("connect", (data) => {
+            socket.emit("Records", [{sadsa:'asdas'}, {dasd:'sada'}])
+          });
+          socket.on("Records", (data) => {
             updateCachedData((draft) => {
-              return [...draft, response];
+              return draft = data;
             });
           });
+          
           console.log(`Socket: ${socket.connected}`);
           await cacheEntryRemoved;
         } catch {
