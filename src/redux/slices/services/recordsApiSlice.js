@@ -21,22 +21,24 @@ export const recordsApi = createApi({
       ) {
         try {
           await cacheDataLoaded;
-          const socket = io(API_URL, {
-            // path: "/api/users",
-            withCredentials: true,
-          });
-          console.log(`Socket: ${socket.connected}`);
+          // const socket = io(API_URL, {
+          //   // path: "/api/users",
+          //   withCredentials: true,
+          // });
+          // console.log(`Socket: ${socket.connected}`);
 
-          socket.on("connect", (data) => {
-            socket.emit("Records", [{sadsa:'asdas'}, {dasd:'sada'}])
-          });
-          socket.on("Records", (data) => {
-            updateCachedData((draft) => {
-              return draft = data;
-            });
-          });
+          // socket.on("connect", (data) => {
+          //   console.log(socket.id)
+          //   socket.emit("Records", [{sadsa:'asdas'}, {dasd:'sada'}])
+          // });
+          // socket.on("Records", (data) => {
+          //   // updateCachedData((draft) => {
+          //   //   return draft = data;
+          //   // });
+          //   console.log(data)
+          // });
           
-          console.log(`Socket: ${socket.connected}`);
+          // console.log(`Socket: ${socket.connected}`);
           await cacheEntryRemoved;
         } catch {
           console.log("error");
@@ -52,6 +54,7 @@ export const recordsApi = createApi({
         body: record,
       }),
       invalidatesTags: ["Records"],
+      
     }),
     updateRecord: builder.mutation({
       query: (editedRecord) => ({

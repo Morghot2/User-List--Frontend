@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { io } from "socket.io-client";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
@@ -13,12 +14,18 @@ import TableRow from "@mui/material/TableRow";
 import TablePagination from "@mui/material/TablePagination";
 import User from "./User";
 
-const ListBody = () => {
+// const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
+// const socket = io(`${API_URL}/api/users`, {
+//   // path: "/api/users",
+//   withCredentials: true,
+// });
+
+
+const ListBody = () => {
   let navigate = useNavigate();
   const { page } = useParams();
   const { data, isFetching } = useGetRecordsQuery();
-
 
   const [rowsPerPage, setRowsPerPage] = useState(3);
 
@@ -33,8 +40,17 @@ const ListBody = () => {
   useEffect(() => {
     navigate(`0`);
   }, []);
-  if (isFetching ) return null;
-  console.log(data)
+  if (isFetching) return null;
+
+
+  // socket.on("connect", (data) => {
+  //   console.log(socket.id)
+  //   socket.emit("Records", [{sadsa:'asdas'}, {dasd:'sada'}])
+  // });
+  // socket.on("Records", (data) => {
+  //   console.log(data);
+  // });
+
 
   return (
     <>
