@@ -15,8 +15,8 @@ import TablePagination from "@mui/material/TablePagination";
 import User from "./User";
 
 const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
-export const socket = io(`${API_URL}`, {
 
+export const socket = io(`${API_URL}`, {
   withCredentials: true,
 });
 
@@ -41,8 +41,8 @@ const ListBody = () => {
   if (isFetching) return null;
 
   socket.on("Records", (data) => {
+   setTimeout(refetch, 200)
     console.log(data);
-    setTimeout(refetch(), 3000)
   });
 
   return (

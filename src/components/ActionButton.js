@@ -5,11 +5,10 @@ import {
 } from "../redux/slices/services/recordsApiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { changeModal } from "../redux/slices/buttonSlice";
-import {socket} from "./ListBody"
+import { socket } from "./ListBody";
 
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 
 const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
@@ -40,26 +39,20 @@ const ActionButton = ({ action, userValues, userInfo }) => {
     buttonProperties.color = "success";
   }
   const handleSocket = () => {
-      socket.emit("Records", "Data changed")
-  }
+    socket.emit("Records", "Data changed");
+  };
   //[{sadsa:'asdas'}, {dasd:'sada'}]
 
-
   const handleUser = () => {
-    handleSocket()
+    handleSocket();
     if (action === "delete") {
-
       removeRecord(userInfo._id);
-      handleSocket()
     } else if (type === "new") {
- 
       addRecord(userValues);
       dispatch(changeModal(!isShown));
-      handleSocket()
     } else if (type === "edit") {
       updateRecord({ recordToChangeId, userValues });
       dispatch(changeModal(!isShown));
-      handleSocket()
     }
   };
 
