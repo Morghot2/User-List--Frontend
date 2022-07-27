@@ -39,7 +39,7 @@ export const recordsApi = createApi({
           // });
           
           // console.log(`Socket: ${socket.connected}`);
-          await cacheEntryRemoved;
+          // await cacheEntryRemoved;
         } catch {
           console.log("error");
         }

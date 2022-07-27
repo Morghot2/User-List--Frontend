@@ -14,18 +14,16 @@ import TableRow from "@mui/material/TableRow";
 import TablePagination from "@mui/material/TablePagination";
 import User from "./User";
 
-// const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
+const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
+export const socket = io(`${API_URL}`, {
 
-// const socket = io(`${API_URL}/api/users`, {
-//   // path: "/api/users",
-//   withCredentials: true,
-// });
-
+  withCredentials: true,
+});
 
 const ListBody = () => {
   let navigate = useNavigate();
   const { page } = useParams();
-  const { data, isFetching } = useGetRecordsQuery();
+  const { data, isFetching, refetch } = useGetRecordsQuery();
 
   const [rowsPerPage, setRowsPerPage] = useState(3);
 
@@ -42,15 +40,10 @@ const ListBody = () => {
   }, []);
   if (isFetching) return null;
 
-
-  // socket.on("connect", (data) => {
-  //   console.log(socket.id)
-  //   socket.emit("Records", [{sadsa:'asdas'}, {dasd:'sada'}])
-  // });
-  // socket.on("Records", (data) => {
-  //   console.log(data);
-  // });
-
+  socket.on("Records", (data) => {
+    console.log(data);
+    setTimeout(refetch(), 3000)
+  });
 
   return (
     <>
