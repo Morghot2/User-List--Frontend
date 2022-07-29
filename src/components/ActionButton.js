@@ -5,7 +5,7 @@ import {
 } from "../redux/slices/services/recordsApiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { changeModal } from "../redux/slices/buttonSlice";
-import { socket } from "./ListBody";
+// import { socket } from "./ListBody";
 
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -22,11 +22,6 @@ const ActionButton = ({ action, userValues, userInfo }) => {
   const type = useSelector((state) => state.buttonState.type);
   let buttonProperties = { text: "", color: "" };
 
-  // const socket = io(`${API_URL}/api/users`, {
-  //   // path: "/api/users",
-  //   withCredentials: true,
-  // });
-
   const [removeRecord] = useRemoveRecordMutation();
   if (action === "delete") {
     buttonProperties.text = <DeleteIcon />;
@@ -38,13 +33,13 @@ const ActionButton = ({ action, userValues, userInfo }) => {
     buttonProperties.text = "Add";
     buttonProperties.color = "success";
   }
-  const handleSocket = () => {
-    socket.emit("Records", "Data changed");
-  };
-  //[{sadsa:'asdas'}, {dasd:'sada'}]
+  // const handleSocket = () => {
+  //   socket.emit("Records", "Records changed");
+  // };
+
 
   const handleUser = () => {
-    handleSocket();
+    // handleSocket();
     if (action === "delete") {
       removeRecord(userInfo._id);
     } else if (type === "new") {
