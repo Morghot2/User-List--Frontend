@@ -15,36 +15,6 @@ export const recordsApi = createApi({
       query: () => ({
         url: "/",
       }),
-      async onCacheEntryAdded(
-        arg,
-        { updateCachedData, cacheDataLoaded, cacheEntryRemoved }
-      ) {
-        try {
-          await cacheDataLoaded;
-          // const socket = io(API_URL, {
-          //   // path: "/api/users",
-          //   withCredentials: true,
-          // });
-          // console.log(`Socket: ${socket.connected}`);
-
-          // socket.on("connect", (data) => {
-          //   console.log(socket.id)
-          //   socket.emit("Records", [{sadsa:'asdas'}, {dasd:'sada'}])
-          // });
-          // socket.on("Records", (data) => {
-          //   // updateCachedData((draft) => {
-          //   //   return draft = data;
-          //   // });
-          //   console.log(data)
-          // });
-          
-          // console.log(`Socket: ${socket.connected}`);
-          // await cacheEntryRemoved;
-        } catch {
-          console.log("error");
-        }
-      },
-
       providesTags: ["Records"],
     }),
     addRecord: builder.mutation({

@@ -55,7 +55,3 @@ export const authApi = createApi({
 
 export const { useLogoutUserMutation, useLoginUserMutation, useRegisterUserMutation } = authApi;
 export default authApi.reducer;
-
-
-// transformResponse: (response, meta, arg) =>
-// localStorage.setItem("user", JSON.stringify(response.token)),

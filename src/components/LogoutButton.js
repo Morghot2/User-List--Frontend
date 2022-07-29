@@ -14,7 +14,6 @@ const LogoutButton = () => {
   const handleClick = async () => {
     navigate("/login");
     logoutUser();
-   
   };
   return (
     <>
