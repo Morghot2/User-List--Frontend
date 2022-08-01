@@ -9,6 +9,9 @@ import currentUserReducer, {
 } from "./slices/services/currentUserApiSlice";
 import currentUserLoginReducer from "./slices/currentUserLoginSlice";
 import buttonReducer from "./slices/buttonSlice";
+import recordReducer from "./slices/recordSlice";
+
+
 export default configureStore({
   reducer: {
     authApi: authApiReducer,
@@ -16,6 +19,7 @@ export default configureStore({
     recordsApi: recordsApiReducer,
     userState: currentUserLoginReducer,
     buttonState: buttonReducer,
+    recordState: recordReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([

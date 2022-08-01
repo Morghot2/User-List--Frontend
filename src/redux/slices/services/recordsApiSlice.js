@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { io } from "socket.io-client";
+import { addUser, deleteUser, editUser, fillUsersData } from "../recordSlice";
 
 const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
@@ -15,6 +15,12 @@ export const recordsApi = createApi({
       query: () => ({
         url: "/",
       }),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(fillUsersData(data));
+        } catch (error) {}
+      },
       providesTags: ["Records"],
     }),
     addRecord: builder.mutation({
