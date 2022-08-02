@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import produce from "immer";
 
 const recordSlice = createSlice({
   name: "record",
 
-  initialState: [{ test: "test" }],
+  initialState: [],
   reducers: {
     fillUsersData: (state, action) => {
-      return { ...action.payload };
+      return [ ...action.payload ];
     },
     addUser: (state, action) => {
       return [...state, action.payload];

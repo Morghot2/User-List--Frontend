@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import { useNavigate, useParams } from "react-router-dom";
+import {useSelector, useDispatch} from 'react-redux';
+import {addUser, deleteUser, editUser} from '../redux/slices/recordSlice.js';
 
 import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
 
@@ -16,14 +18,15 @@ import User from "./User";
 
 const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
 
-const socket = io(`${API_URL}`, {
-  withCredentials: true,
-});
+
 
 const ListBody = () => {
   let navigate = useNavigate();
   const { page } = useParams();
   const { data, isFetching, refetch } = useGetRecordsQuery();
+  const dispatch = useDispatch();
+  const localRecords = useSelector((state) => state.recordState);
+
 
   const [rowsPerPage, setRowsPerPage] = useState(3);
 
@@ -37,15 +40,25 @@ const ListBody = () => {
 
   useEffect(() => {
     navigate(`0`);
-  }, []);
+    const socket = io(`${API_URL}`, {
+      withCredentials: true,
+    });
+    socket.once("Records", (action) => {
+      console.log(action?.message);
+      if (action?.message === "Delete") {
+        dispatch(deleteUser(action?.recordData));
+      } else if (action?.message === "Update") {
+        dispatch(editUser(action?.recordData));
+      } else if (action?.message === "Add") {
+        dispatch(addUser(action?.recordData));
+      }
+      // refetch();
+    });
+  }, [localRecords]);
+
   if (isFetching) return null;
 
-  socket.once("Records", (action) => {
-    console.log(action?.recordData)
-    
-    refetch();
-  });
-
+console.log(data);
   return (
     <>
       <TableContainer component={Paper}>
@@ -61,14 +74,14 @@ const ListBody = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data
+            {localRecords
               ?.slice(
                 parseInt(page || 0) * rowsPerPage,
                 parseInt(page || 0) * rowsPerPage + rowsPerPage
               )
               .map((user) => {
                 return (
-                  <User key={user._id} userInfo={data[data.indexOf(user)]} />
+                  <User key={user._id} userInfo={localRecords[localRecords.indexOf(user)]} />
                 );
               })}
           </TableBody>
@@ -76,7 +89,7 @@ const ListBody = () => {
         <TablePagination
           rowsPerPageOptions={[3, 5, 10]}
           component="div"
-          count={data?.length}
+          count={localRecords?.length}
           rowsPerPage={rowsPerPage}
           page={parseInt(page) || 0}
           onPageChange={handleChangePage}
