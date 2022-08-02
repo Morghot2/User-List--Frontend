@@ -40,7 +40,8 @@ const ListBody = () => {
   }, []);
   if (isFetching) return null;
 
-  socket.on("Records", () => {
+  socket.once("Records", (action) => {
+    console.log(action?.recordData)
     
     refetch();
   });

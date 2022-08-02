@@ -10,24 +10,21 @@ const recordSlice = createSlice({
       return { ...action.payload };
     },
     addUser: (state, action) => {
-      return produce(state, (draftState) => {
-        draftState.push(action.payload);
-      });
+      return [...state, action.payload];
     },
     deleteUser: (state, action) => {
-      return produce(state, (draftState) => {
-        return (draftState = state.filter(
-          (user) => action.payload !== state.indexOf(user)
-        ));
-      });
+      return state.filter((record) => record._id !== action.payload);
     },
     editUser: (state, action) => {
-      return produce(state, (draftState) => {
-        draftState[action.payload.currentUser] = action.payload.userValues;
-      });
+      const { recordToChangeId, userValues } = action.payload;
+      const toChange = state.indexOf(
+        state.find((record) => record._id === recordToChangeId)
+      );
+      state[toChange] = { ...userValues };
     },
   },
 });
 
-export const { addUser, deleteUser, editUser, fillUsersData } = recordSlice.actions;
+export const { addUser, deleteUser, editUser, fillUsersData } =
+  recordSlice.actions;
 export default recordSlice.reducer;

@@ -29,6 +29,12 @@ export const recordsApi = createApi({
         method: "POST",
         body: record,
       }),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(addUser(record));
+        } catch (error) {}
+      },
       invalidatesTags: ["Records"],
       
     }),
@@ -38,6 +44,12 @@ export const recordsApi = createApi({
         method: "PUT",
         body: editedRecord.userValues,
       }),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(editUser(editedRecord));
+        } catch (error) {}
+      },
       invalidatesTags: ["Records"],
     }),
     removeRecord: builder.mutation({
@@ -46,6 +58,12 @@ export const recordsApi = createApi({
         method: "DELETE",
         body: id,
       }),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(deleteUser(id));
+        } catch (error) {}
+      },
       invalidatesTags: ["Records"],
     }),
   }),
