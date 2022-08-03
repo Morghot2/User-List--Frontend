@@ -22,10 +22,6 @@ const MainPage = (props) => {
   if (isFetching) return <CircularProgress color="secondary" />;
   if (isError) return null; /*THERE WAS RETURN NAVIGATE("/login");*/
 
-
-  // if (!isLogged) { /* THERE IS A PROBLEM WITH THIS CODE*/
-  //   return navigate("/login");
-  // } else 
   return (
     <>
       <Header />

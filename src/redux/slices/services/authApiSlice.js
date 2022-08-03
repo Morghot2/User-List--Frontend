@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { recordsApi } from "./recordsApiSlice";
 import { setUser } from "../currentUserLoginSlice.js";
 import {currentUserApi} from "./currentUserApiSlice";
 
