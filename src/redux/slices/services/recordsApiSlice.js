@@ -21,7 +21,6 @@ export const recordsApi = createApi({
           dispatch(fillUsersData(data));
         } catch (error) {}
       },
-      providesTags: ["Records"],
     }),
     addRecord: builder.mutation({
       query: (record) => ({
@@ -29,7 +28,6 @@ export const recordsApi = createApi({
         method: "POST",
         body: record,
       }),
-      invalidatesTags: ["Records"],
     }),
     updateRecord: builder.mutation({
       query: (editedRecord) => ({
@@ -37,7 +35,6 @@ export const recordsApi = createApi({
         method: "PUT",
         body: editedRecord.userValues,
       }),
-      invalidatesTags: ["Records"],
     }),
     removeRecord: builder.mutation({
       query: (id) => ({
@@ -45,7 +42,6 @@ export const recordsApi = createApi({
         method: "DELETE",
         body: id,
       }),
-      invalidatesTags: ["Records"],
     }),
   }),
 });
