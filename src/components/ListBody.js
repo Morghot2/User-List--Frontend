@@ -29,7 +29,6 @@ const ListBody = () => {
   const localRecords = useSelector((state) => state.recordState);
 
   const [rowsPerPage, setRowsPerPage] = useState(3);
-  const [message, setMessage] = useState("");
 
   const handleChangePage = (event, newPage) => {
     navigate(`${newPage}`);
@@ -46,15 +45,12 @@ const ListBody = () => {
     console.log(action?.message);
     if (action?.message === "Delete") {
       dispatch(deleteUser(action?.recordData));
-      setMessage(action?.message);
     }
     if (action?.message === "Update") {
       dispatch(editUser(action?.recordData));
-      setMessage(action?.message);
     }
     if (action?.message === "Add") {
       dispatch(addUser(action?.recordData));
-      setMessage(action?.message);
     } else {
       return null;
     }
