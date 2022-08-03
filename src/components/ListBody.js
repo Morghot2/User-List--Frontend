@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import { useNavigate, useParams } from "react-router-dom";
-import {useSelector, useDispatch} from 'react-redux';
-import {addUser, deleteUser, editUser} from '../redux/slices/recordSlice.js';
+import { useSelector, useDispatch } from "react-redux";
+import { addUser, deleteUser, editUser } from "../redux/slices/recordSlice.js";
 
 import { useGetRecordsQuery } from "../redux/slices/services/recordsApiSlice";
 
@@ -17,8 +17,9 @@ import TablePagination from "@mui/material/TablePagination";
 import User from "./User";
 
 const API_URL = process.env.REACT_APP_SERVER_ENDPOINT;
-
-
+const socket = io(`${API_URL}`, {
+  withCredentials: true,
+});
 
 const ListBody = () => {
   let navigate = useNavigate();
@@ -27,8 +28,8 @@ const ListBody = () => {
   const dispatch = useDispatch();
   const localRecords = useSelector((state) => state.recordState);
 
-
   const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [message, setMessage] = useState("");
 
   const handleChangePage = (event, newPage) => {
     navigate(`${newPage}`);
@@ -40,25 +41,27 @@ const ListBody = () => {
 
   useEffect(() => {
     navigate(`0`);
-    const socket = io(`${API_URL}`, {
-      withCredentials: true,
-    });
-    socket.once("Records", (action) => {
-      console.log(action?.message);
-      if (action?.message === "Delete") {
-        dispatch(deleteUser(action?.recordData));
-      } else if (action?.message === "Update") {
-        dispatch(editUser(action?.recordData));
-      } else if (action?.message === "Add") {
-        dispatch(addUser(action?.recordData));
-      }
-      // refetch();
-    });
-  }, [localRecords]);
+  }, []);
+  socket.off("Records").once("Records", (action) => {
+    console.log(action?.message);
+    if (action?.message === "Delete") {
+      dispatch(deleteUser(action?.recordData));
+      setMessage(action?.message);
+    }
+    if (action?.message === "Update") {
+      dispatch(editUser(action?.recordData));
+      setMessage(action?.message);
+    }
+    if (action?.message === "Add") {
+      dispatch(addUser(action?.recordData));
+      setMessage(action?.message);
+    } else {
+      return null;
+    }
+  });
 
   if (isFetching) return null;
 
-console.log(data);
   return (
     <>
       <TableContainer component={Paper}>
@@ -81,7 +84,10 @@ console.log(data);
               )
               .map((user) => {
                 return (
-                  <User key={user._id} userInfo={localRecords[localRecords.indexOf(user)]} />
+                  <User
+                    key={user._id}
+                    userInfo={localRecords[localRecords.indexOf(user)]}
+                  />
                 );
               })}
           </TableBody>
