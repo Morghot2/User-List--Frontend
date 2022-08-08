@@ -21,3 +21,8 @@
     justify-content: space-around;
 
 }
+
+.photo {
+    width: 3rem;
+    height: 3rem;
+}

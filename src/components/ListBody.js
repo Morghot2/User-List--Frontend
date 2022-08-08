@@ -68,6 +68,7 @@ const ListBody = () => {
               <TableCell>Last Name</TableCell>
               <TableCell>Email</TableCell>
               <TableCell>Age</TableCell>
+              <TableCell>Photo</TableCell>
               <TableCell>Edit</TableCell>
               <TableCell>Delete</TableCell>
             </TableRow>

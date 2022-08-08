@@ -11,6 +11,7 @@ const User = ({ userInfo }) => {
       <TableCell>{userInfo.lastName}</TableCell>
       <TableCell>{userInfo.email}</TableCell>
       <TableCell>{userInfo.age}</TableCell>
+      <TableCell><img src={userInfo.photo} alt="Photo here" className="photo"/></TableCell>
       <TableCell>
         <ModifyButton action={"edit"} userInfo={userInfo} />
       </TableCell>
